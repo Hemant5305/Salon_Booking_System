@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: salon-booking-api
+    env: node
+    plan: free
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: CLIENT_URL
+        value: https://hemant5305.github.io/Salon_Booking_System
+      - key: PORT
+        value: 5000
