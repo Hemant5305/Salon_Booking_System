@@ -2,6 +2,14 @@
 
 A full-stack salon booking application built with MongoDB, Express, React (Vite), and Node.js.
 
+## Live
+
+- Frontend (GitHub Pages): https://hemant5305.github.io/Salon_Booking_System/
+- Backend API (Render): https://salon-booking-api-4w1o.onrender.com
+- Seeded admin login: `admin@salon.com` / `admin123` — change this password after logging in.
+
+Note: the Render free plan spins the API down after inactivity, so the first request after idling can take ~30-50s to wake up.
+
 ## Features
 
 - Customer signup/login (JWT auth)
@@ -51,7 +59,7 @@ npm run dev             # http://localhost:5173
 3. Add environment variables in Render:
    - `MONGO_URI` — your MongoDB Atlas connection string
    - `JWT_SECRET` — any long random string
-   - `CLIENT_URL` — `https://<your-github-username>.github.io/Salon_Booking_System`
+   - `CLIENT_URL` — `https://<your-github-username>.github.io` (origin only, no path — browsers send `Origin` without the page path, so a path here will break CORS)
 4. Deploy. Note the resulting Render URL, e.g. `https://salon-booking-api.onrender.com`.
 
 ### Frontend on GitHub Pages
