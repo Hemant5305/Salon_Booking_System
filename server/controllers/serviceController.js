@@ -20,11 +20,11 @@ const getAllServicesAdmin = async (req, res) => {
 
 const createService = async (req, res) => {
   try {
-    const { name, description, price, duration, category } = req.body;
+    const { name, description, price, duration, category, image } = req.body;
     if (!name || price == null || duration == null) {
       return res.status(400).json({ message: "Name, price and duration are required" });
     }
-    const service = await Service.create({ name, description, price, duration, category });
+    const service = await Service.create({ name, description, price, duration, category, image });
     res.status(201).json(service);
   } catch (error) {
     res.status(500).json({ message: error.message });

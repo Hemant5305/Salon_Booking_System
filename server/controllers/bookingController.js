@@ -13,7 +13,7 @@ const createBooking = async (req, res) => {
       time,
       notes,
     });
-    const populated = await booking.populate("service", "name price duration");
+    const populated = await booking.populate("service", "name price duration image");
     res.status(201).json(populated);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -23,7 +23,7 @@ const createBooking = async (req, res) => {
 const getMyBookings = async (req, res) => {
   try {
     const bookings = await Booking.find({ user: req.user._id })
-      .populate("service", "name price duration")
+      .populate("service", "name price duration image")
       .sort({ createdAt: -1 });
     res.json(bookings);
   } catch (error) {
@@ -51,7 +51,7 @@ const cancelMyBooking = async (req, res) => {
 const getAllBookings = async (req, res) => {
   try {
     const bookings = await Booking.find()
-      .populate("service", "name price duration")
+      .populate("service", "name price duration image")
       .populate("user", "name email phone")
       .sort({ createdAt: -1 });
     res.json(bookings);

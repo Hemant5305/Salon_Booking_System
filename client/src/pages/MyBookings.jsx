@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
+import { formatPrice } from "../utils/format";
 
 const statusClass = {
   pending: "badge badge-pending",
@@ -33,16 +34,19 @@ const MyBookings = () => {
     fetchBookings();
   };
 
-  if (loading) return <div className="page">Loading bookings...</div>;
+  if (loading) return <div className="page state-message">Loading bookings...</div>;
 
   return (
     <div className="page">
-      <h2>My Bookings</h2>
+      <div className="section-heading">
+        <h2>My Bookings</h2>
+      </div>
       <div className="table-wrap">
         <table>
           <thead>
             <tr>
               <th>Service</th>
+              <th>Price</th>
               <th>Date</th>
               <th>Time</th>
               <th>Status</th>
@@ -52,7 +56,13 @@ const MyBookings = () => {
           <tbody>
             {bookings.map((b) => (
               <tr key={b._id}>
-                <td>{b.service?.name}</td>
+                <td>
+                  <div className="row-service">
+                    {b.service?.image && <img src={b.service.image} alt={b.service.name} className="thumb" />}
+                    <span>{b.service?.name}</span>
+                  </div>
+                </td>
+                <td>{formatPrice(b.service?.price)}</td>
                 <td>{b.date}</td>
                 <td>{b.time}</td>
                 <td>

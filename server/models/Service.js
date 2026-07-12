@@ -7,6 +7,7 @@ const serviceSchema = new mongoose.Schema(
     price: { type: Number, required: true },
     duration: { type: Number, required: true },
     category: { type: String, trim: true, default: "General" },
+    image: { type: String, trim: true, default: "" },
     isActive: { type: Boolean, default: true },
   },
   { timestamps: true }

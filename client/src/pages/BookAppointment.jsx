@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../api/axios";
+import { formatPrice } from "../utils/format";
 
 const BookAppointment = () => {
   const { serviceId } = useParams();
@@ -39,14 +40,19 @@ const BookAppointment = () => {
     }
   };
 
-  if (!service) return <div className="page">Loading...</div>;
+  if (!service) return <div className="page state-message">Loading...</div>;
 
   return (
     <div className="page form-page">
-      <h2>Book: {service.name}</h2>
-      <p className="muted">
-        ${service.price} &middot; {service.duration} min
-      </p>
+      <div className="booking-summary">
+        <img src={service.image} alt={service.name} />
+        <div>
+          <h2>Book: {service.name}</h2>
+          <p className="muted">
+            {formatPrice(service.price)} &middot; {service.duration} min
+          </p>
+        </div>
+      </div>
       {error && <p className="error">{error}</p>}
       {success && <p className="success">Booking confirmed! Redirecting...</p>}
       <form onSubmit={handleSubmit}>

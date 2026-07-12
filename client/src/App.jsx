@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import PrivateRoute from "./components/PrivateRoute";
 import AdminRoute from "./components/AdminRoute";
@@ -45,6 +45,7 @@ function App() {
             </AdminRoute>
           }
         >
+          <Route index element={<Navigate to="services" replace />} />
           <Route path="services" element={<ManageServices />} />
           <Route path="bookings" element={<ManageBookings />} />
         </Route>
